@@ -28,7 +28,7 @@ namespace VideoRentalSystem
 
         public bool CheckConnection()
         {
-            if(connection.State == ConnectionState.Open)
+            if (connection.State == ConnectionState.Open)
             {
                 return true;
             }
@@ -188,6 +188,24 @@ namespace VideoRentalSystem
                     command.Parameters.AddWithValue("@" + Parameter.Key, Parameter.Value);
                 }
             }
+        }
+
+        public int CheckAvaliableCopies(int MovieID)
+        {
+            Query = "SELECT (SELECT Copies FROM Movies WHERE MovieID = @MovieID) - (SELECT ISNULL(COUNT(MovieIDFK), 0) FROM RentedMovies WHERE MovieIDFK = @MovieID AND DateReturned IS NULL)";
+
+            command = new SqlCommand(Query, connection);
+            command.Parameters.AddWithValue("@MovieID", MovieID);
+
+            return Convert.ToInt32(ExecuteQuery().Rows[0][0]);
+        }
+
+        public  DataTable GetPendingRentals()
+        {
+            Query = "SELECT RMID, Customer.FirstName, Customer.LastName, Customer.[Address], Movies.Title, Movies.Rental_Cost, RentedMovies.DateRented, RentedMovies.DateReturned FROM RentedMovies INNER JOIN Movies ON RentedMovies.MovieIDFK = Movies.MovieID INNER JOIN Customer ON RentedMovies.CustIDFK = Customer.CustID WHERE RentedMovies.DateReturned IS NULL";
+            command = new SqlCommand(Query, connection);
+
+            return ExecuteQuery();
         }
     }
 }

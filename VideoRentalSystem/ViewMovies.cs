@@ -24,5 +24,20 @@ namespace VideoRentalSystem
             updateMovie.ShowDialog();
             dataGridView1.DataSource = new Database().SelectAnd("Movies");
         }
+
+        private void issueRentalToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int AvailableCopies = new Database().CheckAvaliableCopies(Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value));
+            if(AvailableCopies > 0)
+            {
+                IssueRental issueRental = new IssueRental(dataGridView1.SelectedRows[0].Cells[0].Value.ToString());
+                issueRental.ShowDialog();
+                dataGridView1.DataSource = new Database().SelectAnd("Movies");
+            }
+            else
+            {
+                MessageBox.Show("No copy available to rent");
+            }
+        }
     }
 }

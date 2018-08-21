@@ -32,6 +32,7 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.issueRentalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -39,9 +40,10 @@
             // contextMenuStrip1
             // 
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.editToolStripMenuItem});
+            this.editToolStripMenuItem,
+            this.issueRentalToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(153, 48);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(153, 70);
             // 
             // editToolStripMenuItem
             // 
@@ -64,6 +66,13 @@
             this.dataGridView1.Size = new System.Drawing.Size(729, 482);
             this.dataGridView1.TabIndex = 1;
             // 
+            // issueRentalToolStripMenuItem
+            // 
+            this.issueRentalToolStripMenuItem.Name = "issueRentalToolStripMenuItem";
+            this.issueRentalToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.issueRentalToolStripMenuItem.Text = "Issue Rental";
+            this.issueRentalToolStripMenuItem.Click += new System.EventHandler(this.issueRentalToolStripMenuItem_Click);
+            // 
             // ViewMovies
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -83,5 +92,6 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.ToolStripMenuItem issueRentalToolStripMenuItem;
     }
 }
