@@ -17,17 +17,14 @@ namespace VideoRentalSystem
         {
             FormBorderStyle = FormBorderStyle.None;
             StartPosition = FormStartPosition.CenterScreen;
-            Visible = false;
             InitializeComponent();
         }
 
         private void VideoRentalMainForm_Load(object sender, EventArgs e)
         {
-            
             Login login = new Login();
             login.StartPosition = FormStartPosition.CenterScreen;
             login.ShowDialog();
-            Visible = true;
         }
 
         private void AddCustomer_Click(object sender, EventArgs e)

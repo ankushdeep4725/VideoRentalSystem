@@ -8,7 +8,7 @@ using System.Web;
 
 namespace VideoRentalSystem
 {
-    class Database
+    public class Database
     {
 
         private SqlConnection connection;
@@ -200,7 +200,7 @@ namespace VideoRentalSystem
             return Convert.ToInt32(ExecuteQuery().Rows[0][0]);
         }
 
-        public  DataTable GetPendingRentals()
+        public DataTable GetPendingRentals()
         {
             Query = "SELECT RMID, Customer.FirstName, Customer.LastName, Customer.[Address], Movies.Title, Movies.Rental_Cost, RentedMovies.DateRented, RentedMovies.DateReturned FROM RentedMovies INNER JOIN Movies ON RentedMovies.MovieIDFK = Movies.MovieID INNER JOIN Customer ON RentedMovies.CustIDFK = Customer.CustID WHERE RentedMovies.DateReturned IS NULL";
             command = new SqlCommand(Query, connection);
