@@ -45,14 +45,62 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="AddCustomer.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="AddCustomer.Designer.cs">
+      <DependentUpon>AddCustomer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AddMovie.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddMovie.Designer.cs">
+      <DependentUpon>AddMovie.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ChangePassword.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChangePassword.Designer.cs">
+      <DependentUpon>ChangePassword.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Login.Designer.cs">
+      <DependentUpon>Login.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UpdateCustomer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UpdateCustomer.Designer.cs">
+      <DependentUpon>UpdateCustomer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UpdateMovie.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UpdateMovie.Designer.cs">
+      <DependentUpon>UpdateMovie.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VideoRentalMainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VideoRentalMainForm.Designer.cs">
+      <DependentUpon>VideoRentalMainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewCustomers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ViewCustomers.Designer.cs">
+      <DependentUpon>ViewCustomers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewMovies.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ViewMovies.Designer.cs">
+      <DependentUpon>ViewMovies.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
