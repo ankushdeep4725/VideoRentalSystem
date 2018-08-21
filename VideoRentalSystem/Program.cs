@@ -16,7 +16,7 @@ namespace VideoRentalSystem
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new ReturnRental());
+            Application.Run(new VideoRentalMainForm());
         }
     }
 }

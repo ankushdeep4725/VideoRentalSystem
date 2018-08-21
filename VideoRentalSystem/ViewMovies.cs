@@ -21,6 +21,7 @@ namespace VideoRentalSystem
         private void editToolStripMenuItem_Click(object sender, EventArgs e)
         {
             UpdateMovie updateMovie = new UpdateMovie(dataGridView1.SelectedRows[0].Cells[0].Value.ToString());
+            updateMovie.StartPosition = FormStartPosition.CenterScreen;
             updateMovie.ShowDialog();
             dataGridView1.DataSource = new Database().SelectAnd("Movies");
         }
@@ -31,6 +32,7 @@ namespace VideoRentalSystem
             if(AvailableCopies > 0)
             {
                 IssueRental issueRental = new IssueRental(dataGridView1.SelectedRows[0].Cells[0].Value.ToString());
+                issueRental.StartPosition = FormStartPosition.CenterScreen;
                 issueRental.ShowDialog();
                 dataGridView1.DataSource = new Database().SelectAnd("Movies");
             }

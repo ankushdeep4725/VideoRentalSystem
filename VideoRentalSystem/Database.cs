@@ -207,5 +207,21 @@ namespace VideoRentalSystem
 
             return ExecuteQuery();
         }
+
+        public DataTable GetBestCustomers()
+        {
+            Query = "SELECT *, ISNULL((SELECT COUNT(RMID) FROM RentedMovies WHERE CustIDFK = CustID), 0) AS RentedMovies FROM Customer ORDER BY RentedMovies DESC";
+            command = new SqlCommand(Query, connection);
+
+            return ExecuteQuery();
+        }
+
+        public DataTable GetBestMovies()
+        {
+            Query = "SELECT *, ISNULL((SELECT COUNT (RMID) FROM RentedMovies WHERE MovieIDFK = MovieID), 0) AS TimesRented FROM Movies ORDER BY TimesRented DESC";
+            command = new SqlCommand(Query, connection);
+
+            return ExecuteQuery();
+        }
     }
 }
