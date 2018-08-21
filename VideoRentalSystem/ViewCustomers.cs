@@ -15,6 +15,14 @@ namespace VideoRentalSystem
         public ViewCustomers()
         {
             InitializeComponent();
+            dataGridView1.DataSource = new Database().SelectAnd("Customer");
+        }
+
+        private void editToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            UpdateCustomer updateCustomer = new UpdateCustomer(dataGridView1.SelectedRows[0].Cells[0].Value.ToString());
+            updateCustomer.ShowDialog();
+            dataGridView1.DataSource = new Database().SelectAnd("Customer");
         }
     }
 }
