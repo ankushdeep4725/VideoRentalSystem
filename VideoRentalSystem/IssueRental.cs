@@ -37,7 +37,8 @@ namespace VideoRentalSystem
                 Dictionary<string, string> Data = new Dictionary<string, string>();
                 Data.Add("MovieIDFK", MovieID.Text);
                 Data.Add("CustIDFK", CustID.Text);
-                Data.Add("DateRented", DateTime.Now.ToString());
+                string Date = DateTime.Now.ToString("MM/dd/yyyy") + " " + DateTime.Now.ToShortTimeString();
+                Data.Add("DateRented", Date);
 
                 new Database().Insert("RentedMovies", Data);
 

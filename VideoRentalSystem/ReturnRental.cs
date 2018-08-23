@@ -25,7 +25,8 @@ namespace VideoRentalSystem
             if(result == DialogResult.Yes)
             {
                 Dictionary<string, string> Data = new Dictionary<string, string>();
-                Data.Add("DateReturned", DateTime.Now.ToString());
+                string Date = DateTime.Now.ToString("MM/dd/yyyy") + " " + DateTime.Now.ToShortTimeString();
+                Data.Add("DateReturned", Date);
 
                 Dictionary<string, string> Where = new Dictionary<string, string>();
                 Where.Add("RMID", dataGridView1.SelectedRows[0].Cells[0].Value.ToString());
