@@ -1,11 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace VideoRentalSystem
@@ -20,6 +15,7 @@ namespace VideoRentalSystem
 
         private void button1_Click(object sender, EventArgs e)
         {
+            //Create dictionary to select user
             Dictionary<string, string> Where = new Dictionary<string, string>();
 
             foreach (var control in Controls)
@@ -31,8 +27,10 @@ namespace VideoRentalSystem
                 }
             }
 
+            //Call Select method with AND clause
             DataTable data = new Database().SelectAnd("Admin", Where);
 
+            //Check is sent credentials were correct
             if(data.Rows.Count > 0)
             {
                 Dispose();

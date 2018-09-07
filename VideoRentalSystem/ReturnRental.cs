@@ -1,11 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace VideoRentalSystem
@@ -16,6 +10,7 @@ namespace VideoRentalSystem
         {
             InitializeComponent();
 
+            //Fill data grid with Pending rentals
             dataGridView1.DataSource = new Database().GetPendingRentals();
         }
 
@@ -24,6 +19,7 @@ namespace VideoRentalSystem
             DialogResult result = MessageBox.Show("Are you sure to reurn this rental?", "Return Confirmation", MessageBoxButtons.YesNo);
             if(result == DialogResult.Yes)
             {
+                //Create Dictionary to mark rental as returned
                 Dictionary<string, string> Data = new Dictionary<string, string>();
                 string Date = DateTime.Now.ToString("MM/dd/yyyy") + " " + DateTime.Now.ToShortTimeString();
                 Data.Add("DateReturned", Date);
@@ -31,10 +27,12 @@ namespace VideoRentalSystem
                 Dictionary<string, string> Where = new Dictionary<string, string>();
                 Where.Add("RMID", dataGridView1.SelectedRows[0].Cells[0].Value.ToString());
 
+                //Call update method
                 new Database().Update("RentedMovies", Data, Where);
 
                 MessageBox.Show("Movie Returned");
 
+                //Refresh data grid
                 dataGridView1.DataSource = new Database().GetPendingRentals();
             }
         }

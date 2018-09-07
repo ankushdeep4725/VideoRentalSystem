@@ -1,11 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace VideoRentalSystem
@@ -20,12 +15,15 @@ namespace VideoRentalSystem
             InitializeComponent();
         }
 
+        //Constructor to call from View Movie and fill with user values
         public UpdateMovie(string value)
         {
             InitializeComponent();
             MovieID = value;
             Where = new Dictionary<string, string>();
             Where.Add("MovieID", MovieID);
+
+            //Get selected movie's data
             DataTable data = new Database().SelectAnd("Movies", Where);
 
             foreach (DataRow item in data.Rows)
@@ -36,6 +34,7 @@ namespace VideoRentalSystem
                     {
                         if (Control.Name == column.ColumnName)
                         {
+                            //Fill the textboxes with selected movie's data
                             Control.Text = item[column].ToString();
                         }
                     }
@@ -47,22 +46,26 @@ namespace VideoRentalSystem
         {
             int YearVal, CopiesVal;
 
+            //Check if all fields are filled
             if (Rating.Text == "" || Title.Text == "" || Year.Text == "" || Copies.Text == "" || Plot.Text == "" || Genre.Text == "")
             {
                 MessageBox.Show("All fields are required");
             }
+            //Check if Year and Copies is a valid integer value
             else if (!int.TryParse(Year.Text, out YearVal) || !(int.TryParse(Copies.Text, out CopiesVal)))
             {
                 MessageBox.Show("Year and Copies must be a valid integer");
             }
             else
             {
+                //Create a key value pair Dictionary for movie insertion
                 Dictionary<string, string> movie = new Dictionary<string, string>();
 
                 foreach (var control in Controls)
                 {
                     if (control is TextBox)
                     {
+                        //Add value of each textbox in Dictionary
                         TextBox ctrl = control as TextBox;
                         movie.Add(ctrl.Name, ctrl.Text);
                     }
@@ -77,6 +80,7 @@ namespace VideoRentalSystem
                     movie.Add("Rental_Cost", 5.ToString());
                 }
 
+                //Call the update method
                 new Database().Update("Movies", movie, Where);
 
                 MessageBox.Show("Movie Added Successfully");

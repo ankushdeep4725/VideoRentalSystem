@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace VideoRentalSystem
@@ -15,25 +8,36 @@ namespace VideoRentalSystem
         public ViewMovies()
         {
             InitializeComponent();
+
+            //Fill data grid with all movies
             dataGridView1.DataSource = new Database().SelectAnd("Movies");
         }
 
         private void editToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            //Open Update Movie form with selected movie's ID
             UpdateMovie updateMovie = new UpdateMovie(dataGridView1.SelectedRows[0].Cells[0].Value.ToString());
             updateMovie.StartPosition = FormStartPosition.CenterScreen;
             updateMovie.ShowDialog();
+
+            //Refresh data grid
             dataGridView1.DataSource = new Database().SelectAnd("Movies");
         }
 
         private void issueRentalToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            //Get available copies for select movie
             int AvailableCopies = new Database().CheckAvaliableCopies(Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value));
-            if(AvailableCopies > 0)
+
+            //If copies are available
+            if (AvailableCopies > 0)
             {
+                //Open Issue Rental form with selected movie ID
                 IssueRental issueRental = new IssueRental(dataGridView1.SelectedRows[0].Cells[0].Value.ToString());
                 issueRental.StartPosition = FormStartPosition.CenterScreen;
                 issueRental.ShowDialog();
+
+                //Refresh data grid
                 dataGridView1.DataSource = new Database().SelectAnd("Movies");
             }
             else

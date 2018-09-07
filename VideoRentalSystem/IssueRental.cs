@@ -1,11 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace VideoRentalSystem
@@ -19,6 +14,7 @@ namespace VideoRentalSystem
             InitializeComponent();
         }
 
+        //Constructer to call from View movies
         public IssueRental(string value)
         {
             MovieIDVal = value;
@@ -28,18 +24,21 @@ namespace VideoRentalSystem
 
         private void button1_Click(object sender, EventArgs e)
         {
+            //Checks if the customer ID is entered correctly
             if(FirstName.Text == "")
             {
                 MessageBox.Show("Enter valid Customer ID");
             }
             else
             {
+                //Create dictionary to INSERT in Rented Movies
                 Dictionary<string, string> Data = new Dictionary<string, string>();
                 Data.Add("MovieIDFK", MovieID.Text);
                 Data.Add("CustIDFK", CustID.Text);
                 string Date = DateTime.Now.ToString("MM/dd/yyyy") + " " + DateTime.Now.ToShortTimeString();
                 Data.Add("DateRented", Date);
 
+                //Call insert method to insert in RentedMovies table
                 new Database().Insert("RentedMovies", Data);
 
                 MessageBox.Show("Movie Rented");
